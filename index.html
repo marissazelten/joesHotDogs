@@ -1,0 +1,61 @@
+
+<!doctype html>
+<link rel="stylesheet" href="styles.css">
+
+<html>
+<head>
+<meta charset="utf-8">
+<h1>Joe's HotDogs!</h1>
+
+</head>
+
+<body>
+
+	<script language="javascript">
+	const menuItems = ["hot dogs", "fries", "soda"];
+	const menuPrices = [3.75, 3.00, 2.5];
+	const amount = ["0", "0", "0"];
+
+	amount[0] = prompt("How many hot dogs do you want?");
+	amount[1] = prompt("How many french fries do you want?");
+	amount[2] = prompt("How much soda do you want?");
+	let dogTotal = menuPrices[0] * amount[0];
+	let friesTotal = menuPrices[1] * amount[1];
+	let sodaTotal = menuPrices[2] * amount[2];
+	let total = dogTotal + friesTotal + sodaTotal;
+	document.write("You ordered: </br>"); 
+	document.write(amount[0] + " Hot Dogs for $" + price_to_string(dogTotal) + "</br>");
+	document.write(amount[1] + " French Fries for $" + price_to_string(friesTotal) + "</br>");
+	document.write(amount[2] + " Drinks for $" + price_to_string(sodaTotal) + "</br>");
+	document.write("Total before tax and discounts: $" + price_to_string(total) + "</br>");
+	let newTotal = total;
+	if(total >= 25) {
+		let discount = .1 * total;
+		newTotal = total - discount;
+		document.write("Discount Amount: $" + price_to_string(discount) + "</br>");
+	}
+	document.write("Total after discount: $" + price_to_string(newTotal) + "</br>");
+	let taxAmount = .0625 * newTotal;
+	let finalTotal = newTotal + taxAmount;
+	document.write("Tax amount: $" + price_to_string(taxAmount) + "</br>");
+	document.write("Final Total: $" + price_to_string(finalTotal) + "</br>");
+	document.write("Thanks for visiting Joe's! Come again soon! </br>");
+	/*
+		function contract
+		name: price_to_string()
+		description: takes in a number and returns it rounds to 
+			two decimal places
+	*/
+	function price_to_string(a) {
+		var num;
+		const dollars = String(Math.floor(a));
+
+		let dimes = Math.floor(a*10) - (10 * Math.floor(a) ) ;		
+		let pennies = Math.round(a*100) - (10 * Math.floor(a*10) ) ;
+		num = dollars + "." + dimes + pennies;
+		return num;
+	}
+</script>
+
+</body>
+</html>
